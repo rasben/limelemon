@@ -46,10 +46,10 @@
 				Vores anbefaling til din fest
 			</span>
 		{/if}
-		<h2 class="h3 mb-2">
+		<h2 class="h3 mb-4">
 			{pricingPackage?.label}
 		</h2>
-		<p class="relative">
+		<p class="relative mb-4">
 			{pricingPackage?.description}
 		</p>
 
@@ -60,7 +60,7 @@
 
 		{#if pricingPackage?.price}
 			<p class="h5 font-bold mb-2">
-				{pricingPackage.price}
+				{pricingPackage.price.toLocaleString()}
 			</p>
 		{/if}
 
