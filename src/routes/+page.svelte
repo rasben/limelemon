@@ -29,6 +29,7 @@
 		</h2>
 		<p>.. så vi kan anbefale en pakke til dig.</p>
 	</div>
+
 	<div class="mb-4 mx-auto">
 		<span class="label">
 			Jeg har
@@ -36,6 +37,7 @@
 		</span>
 		<RangeSlider min={5} max={100} step={5} bind:values={guests} pips first="label" last="label" />
 	</div>
+
 	<div class="mb-4 mx-auto">
 		<span class="label">
 			Festen varer

@@ -42,7 +42,7 @@
 >
 	<div class="{cardClasses} {isSelected ? activeCardClasses : inactiveCardClasses}">
 		{#if isRecommended}
-			<span class="chip variant-filled-secondary inline-block mb-4">
+			<span class="badge variant-filled-secondary inline-block mb-4">
 				Vores anbefaling til din fest
 			</span>
 		{/if}
