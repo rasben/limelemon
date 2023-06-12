@@ -24,6 +24,12 @@ export type CocktailOrder = {
 	liters: number;
 };
 
+export type CocktailPackage = {
+	label?: string;
+	cocktailOrders: CocktailOrder[];
+	price?: string;
+};
+
 export type Booking = {
 	guests?: number;
 	hours?: number;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pricingPackages } from '$lib/vars/vars';
+	import { pricingPackages } from '$lib/vars/pricingPackages';
 	import PricingTableItem from '$lib/components/PricingTableItem.svelte';
 
 	export let selectedPackage;

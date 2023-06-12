@@ -15,7 +15,7 @@
 	const inactiveItemClasses = '';
 	const activeItemClasses = `z-20`;
 	const cardClasses =
-		'card flex flex-col text-center h-full p-4 overflow-hidden transition-all shadow-lg shadow-black duration-500 hover:variant-filled hover:max-h-[2000px]';
+		'card flex flex-col text-center h-full p-4 overflow-hidden transition-all shadow-lg shadow-black duration-500 hover:variant-filled hover:max-h-[2000px]  hover:md:mt-0';
 	const inactiveCardClasses = `md:mt-6`;
 	const activeCardClasses = 'variant-filled max-h-[2000px]';
 
@@ -28,17 +28,10 @@
 	$: isSelected = selectedPackage === id;
 </script>
 
-<div
+<a
+	href="/pakke/{id}"
 	class="{itemClasses} {itemLoopClasses[index]}
    {isSelected ? activeItemClasses : inactiveItemClasses}"
-	on:click={() => {
-		selectedPackage = id;
-	}}
-	on:keypress={() => {
-		selectedPackage = id;
-	}}
-	role="button"
-	tabindex="0"
 >
 	<div class="{cardClasses} {isSelected ? activeCardClasses : inactiveCardClasses}">
 		{#if isRecommended}
@@ -64,8 +57,6 @@
 			</p>
 		{/if}
 
-		<a class="btn variant-filled-primary mt-2" href="/pakke/{id}">
-			Vælg cocktails med denne pakke
-		</a>
+		<span class="btn variant-filled-primary mt-2"> Vælg cocktails med denne pakke </span>
 	</div>
-</div>
+</a>

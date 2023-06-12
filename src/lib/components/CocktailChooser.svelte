@@ -3,7 +3,6 @@
 
 	export let cocktail: CocktailDetails;
 	export let cocktailOrder: CocktailOrder;
-	export let totalPrice;
 
 	function removeCocktail(): void {
 		if (cocktailOrder.liters <= 0) {
@@ -11,12 +10,10 @@
 		}
 
 		cocktailOrder.liters--;
-		totalPrice -= cocktailOrder.cocktail.pricePerLiter;
 	}
 
 	function addCocktail(): void {
 		cocktailOrder.liters++;
-		totalPrice += cocktailOrder.cocktail.pricePerLiter;
 	}
 </script>
 
@@ -46,16 +43,16 @@
 	</span>
 
 	<footer class="flex absolute left-2 bottom-2 z-10 items-center justify-center">
-		<button type="button" class="btn-icon btn-icon-sm variant-filled" on:click={removeCocktail}
-			>-</button
-		>
+		<button type="button" class="btn-icon btn-icon-sm variant-filled" on:click={removeCocktail}>
+			-
+		</button>
 
 		<span class="inline-block text-center min-w-[75px]">
 			{cocktailOrder.liters} liter
 		</span>
 
-		<button type="button" class="btn-icon btn-icon-sm variant-filled" on:click={addCocktail}
-			>+</button
-		>
+		<button type="button" class="btn-icon btn-icon-sm variant-filled" on:click={addCocktail}>
+			+
+		</button>
 	</footer>
 </div>

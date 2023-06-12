@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { CocktailOrder } from '$lib/types/types';
-	import { pricingPackages } from '$lib/vars/vars';
-	import { cocktails } from '$lib/vars/cocktails';
+	import { pricingPackages } from '$lib/vars/pricingPackages';
+	import { availableCocktails as cocktails } from '$lib/vars/cocktails';
 	import CocktailChooser from '$lib/components/CocktailChooser.svelte';
+	import CocktailPackageChooser from '$lib/components/CocktailPackageChooser.svelte';
 
 	export let data;
 	export let totalPrice = 0;
@@ -15,13 +16,26 @@
 			liters: 0
 		});
 	});
+
+	// todo, is this bad performance?
+	$: {
+		totalPrice = 0;
+
+		cocktailOrders.forEach((cocktailOrder) => {
+			const literPrice = cocktailOrder.cocktail.pricePerLiter;
+
+			totalPrice += cocktailOrder.liters * literPrice;
+		});
+	}
 </script>
+
+<CocktailPackageChooser bind:cocktailOrders />
 
 <div class="flex">
 	<section class="grow w-full">
 		<div class="grid md:grid-cols-2 gap-4 mb-4">
 			{#each cocktails as cocktail, i}
-				<CocktailChooser {cocktail} bind:cocktailOrder={cocktailOrders[i]} bind:totalPrice />
+				<CocktailChooser {cocktail} bind:cocktailOrder={cocktailOrders[i]} />
 			{/each}
 		</div>
 	</section>
