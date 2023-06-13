@@ -51,3 +51,5 @@ export const virgin: CocktailPackage = {
 		}
 	]
 };
+
+export const availableCocktailPackages: CocktailPackage[] = [exclusive, premium, virgin];

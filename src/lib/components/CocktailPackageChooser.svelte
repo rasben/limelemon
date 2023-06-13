@@ -1,13 +1,34 @@
 <script lang="ts">
-	import { exclusive, premium, virgin } from '$lib/vars/cocktailPackages';
-	import type { CocktailPackage } from '$lib/types/types';
+	import { availableCocktailPackages as cocktailPackages } from '$lib/vars/cocktailPackages';
+	import type { CocktailPackage, CocktailOrder } from '$lib/types/types';
 
 	export let cocktailOrders;
 
-	const cocktailPackages = [exclusive, premium, virgin] as CocktailPackage[];
+	function choosePackage(cocktailPackage: CocktailPackage) {
+		// First, let's get rid of any existing litres.
+		cocktailOrders.forEach(function (cocktailOrder: CocktailOrder) {
+			cocktailOrder.liters = 0;
+		});
 
-	function choosePackage(cocktailPackage) {
-		cocktailOrders = cocktailPackage.cocktailOrders;
+		// Find the cocktailOrders in the package, and update any matching
+		// litres in the original object.
+		cocktailPackage.cocktailOrders.forEach(function (cocktailOrder: CocktailOrder) {
+			const existingCocktailOrder = cocktailOrders.find(
+				(i) => i.cocktail === cocktailOrder.cocktail
+			);
+
+			if (existingCocktailOrder) {
+				existingCocktailOrder.liters = cocktailOrder.liters;
+
+				return;
+			}
+
+			// Else, let's just add the cocktailOrder to the array.
+			cocktailOrders.push(cocktailOrder);
+		});
+
+		cocktailOrders = cocktailOrders;
+		//cocktailOrders = cocktailPackage.cocktailOrders;
 	}
 </script>
 

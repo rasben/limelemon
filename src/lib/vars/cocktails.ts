@@ -15,15 +15,17 @@ import {
 
 export const ginTonic: CocktailDetails = {
 	label: 'Gin & Tonic',
+	pricePerLiter: 250,
+	icon: 'mdi:glass-stange',
 	alcPercentage: '10%',
 	image: '/cocktails/gintonic.png',
-	pricePerLiter: 250,
 	ingredients: [{ ...ice }, { ...lime }, { ...gin, amount: '25%' }, { ...tonic, amount: '75%' }]
 };
 
 export const lemonade: CocktailDetails = {
 	label: 'Lemonade',
 	pricePerLiter: 150,
+	icon: 'mdi:beer',
 	ingredients: [
 		{ ...sugarSyrup, amount: '25%' },
 		{ ...danskvand, amount: '50%' },
@@ -34,6 +36,7 @@ export const lemonade: CocktailDetails = {
 export const rhubarbLemonade: CocktailDetails = {
 	label: 'Rabarber Lemonade',
 	pricePerLiter: 250,
+	icon: 'mdi:beer',
 	ingredients: [
 		{ ...rhubarbSyrup, amount: '35%' },
 		{ ...danskvand, amount: '50%' },
@@ -44,6 +47,9 @@ export const rhubarbLemonade: CocktailDetails = {
 export const moscowMule: CocktailDetails = {
 	label: 'Moscow Mule',
 	pricePerLiter: 175,
+	icon: 'mdi:cup',
+	alcPercentage: '10.5%',
+
 	ingredients: [
 		{ ...vodka, amount: '26%' },
 		{ ...sugarSyrup, amount: '5%' },
@@ -55,6 +61,8 @@ export const moscowMule: CocktailDetails = {
 export const missVanillaRhubarbara: CocktailDetails = {
 	label: 'Miss Vanilla Rhubarbara',
 	pricePerLiter: 225,
+	icon: 'mdi:glass-cocktail',
+	alcPercentage: '8.7%',
 	ingredients: [
 		{ ...gin, amount: '22%' },
 		{ ...rhubarbSyrup, amount: '22%' },

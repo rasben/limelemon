@@ -15,6 +15,7 @@ export type CocktailDetails = {
 	label: string;
 	image?: string;
 	alcPercentage?: string;
+	icon?: string;
 	pricePerLiter: number;
 	ingredients: Ingredient[];
 };

@@ -8,6 +8,6 @@
 </script>
 
 <div class="container mx-auto flex flex-col justify-center py-20">
-	<a href="/" class="font-bold mb-2">Hjem</a>
+	<a href="/" class="font-bold mb-2" data-sveltekit-reload>Hjem</a>
 	<slot />
 </div>
