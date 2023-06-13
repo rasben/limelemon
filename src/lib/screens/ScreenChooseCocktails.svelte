@@ -11,6 +11,14 @@
 	export let totalPrice = 0;
 	export let selectedPackage;
 
+	import { guestsStore, cocktailOrdersStore } from '$lib/stores/booking';
+
+	let guests;
+
+	guestsStore.subscribe((value) => {
+		guests = value;
+	});
+
 	let cocktailOrders: CocktailOrder[] = [];
 
 	cocktails.forEach(function (cocktail) {
@@ -22,6 +30,8 @@
 
 	// todo, is this bad performance?
 	$: {
+		cocktailOrdersStore.update((n) => cocktailOrders);
+
 		totalPrice = 0;
 
 		cocktailOrders.forEach((cocktailOrder) => {
@@ -36,11 +46,12 @@
 	}
 </script>
 
-<CocktailPackageChooser bind:cocktailOrders />
+<CocktailPackageChooser bind:cocktailOrders {guests} />
+<hr class="mb-4" />
 
 <div class="flex">
 	<section class="grow w-full">
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+		<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
 			{#each cocktailOrders as cocktailOrder}
 				<CocktailChooser bind:cocktailOrder />
 			{/each}
@@ -59,6 +70,8 @@
 					total pris: {totalPrice.toLocaleString()} kr
 				</small>
 			</h2>
+
+			<a class="btn variant-filled-surface absolute right-5 top-5" href="/indkoeb">Indkøbsliste</a>
 
 			<CocktailOrdersList {cocktailOrders} />
 		</div>

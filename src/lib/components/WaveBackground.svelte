@@ -1,22 +1,32 @@
 <script lang="ts">
-	export let percentage;
+	import type { CocktailOrder } from '$lib/types/types';
+
+	export let cocktailOrder: CocktailOrder;
+	const color = cocktailOrder?.cocktail?.color ?? '#04ACFF';
 	let pourPecentage;
-	$: pourPecentage = percentage < 20 ? 20 - percentage : 1;
-	let isPouring = false;
 
+	const pourReference = 50;
+	let hasPoured = false;
+
+	$: liters = cocktailOrder.liters;
 	$: {
-		if (percentage > 0) {
-			isPouring = true;
+		let litersPercentage = liters * 2;
 
-			setTimeout(() => {
-				isPouring = false;
-			}, 3000);
+		if (litersPercentage > pourReference) {
+			hasPoured = true;
+			pourPecentage = pourReference * 0.1;
+		} else if (litersPercentage > 0) {
+			hasPoured = true;
+			pourPecentage = pourReference - litersPercentage;
+		} else {
+			hasPoured = false;
+			pourPecentage = pourReference;
 		}
 	}
 </script>
 
-<div class="waves">
-	<div class="pour {isPouring ? 'is-pouring' : ''}" />
+<div class="waves" style="color: {color};">
+	<div class="pour {hasPoured ? 'is-pouring' : ''}" />
 	<div class="fill" style="transform: translateY({pourPecentage}%)">
 		<svg
 			class="wave-container"
@@ -25,7 +35,7 @@
 			xml:space="preserve"
 		>
 			<path
-				fill="#04ACFF"
+				fill="currentColor"
 				class="wave"
 				d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
 c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
@@ -49,14 +59,14 @@ c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"
 	}
 
 	.fill {
-		transform: translateY(20%);
+		transform: translateY(50%);
 		transition: transform ease-in-out 1s;
 	}
 
 	.pour {
 		position: absolute;
 		left: 50%;
-		border-left: 10px solid #009ae6;
+		border-left: 10px solid currentColor;
 		top: -200%;
 		height: 200%;
 	}
@@ -75,10 +85,9 @@ c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"
 		animation-name: waveAction;
 		animation-iteration-count: infinite;
 		animation-timing-function: linear;
-		animation-duration: 0.5s;
-		width: 200%;
+		animation-duration: 1s;
+		width: 100%;
 		height: 100%;
-		fill: #04acff;
 	}
 
 	@keyframes pourAction {

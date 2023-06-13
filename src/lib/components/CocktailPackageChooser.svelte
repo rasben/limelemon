@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { availableCocktailPackages as cocktailPackages } from '$lib/vars/cocktailPackages';
-	import type { CocktailPackage, CocktailOrder } from '$lib/types/types';
+	import type { CocktailPackage, CocktailOrder, CocktailPackageItem } from '$lib/types/types';
 
 	export let cocktailOrders;
+	export let guests;
 
 	function choosePackage(cocktailPackage: CocktailPackage) {
 		// First, let's get rid of any existing litres.
@@ -12,19 +13,24 @@
 
 		// Find the cocktailOrders in the package, and update any matching
 		// litres in the original object.
-		cocktailPackage.cocktailOrders.forEach(function (cocktailOrder: CocktailOrder) {
+		cocktailPackage.items.forEach(function (cocktailPackageItem: CocktailPackageItem) {
 			const existingCocktailOrder = cocktailOrders.find(
-				(i) => i.cocktail === cocktailOrder.cocktail
+				(i) => i.cocktail === cocktailPackageItem.cocktail
 			);
 
+			const liters = cocktailPackageItem.litersPerGuest * guests;
+
 			if (existingCocktailOrder) {
-				existingCocktailOrder.liters = cocktailOrder.liters;
+				existingCocktailOrder.liters = liters;
 
 				return;
 			}
 
 			// Else, let's just add the cocktailOrder to the array.
-			cocktailOrders.push(cocktailOrder);
+			cocktailOrders.push({
+				cocktail: cocktailPackageItem.cocktail,
+				liters: liters
+			} as CocktailOrder);
 		});
 
 		cocktailOrders = cocktailOrders;
@@ -32,16 +38,29 @@
 	}
 </script>
 
-<div class="flex gap-4 items-center mb-4">
-	De her knapper er buggy:
-	{#each cocktailPackages as cocktailPackage}
-		<button
-			class="btn variant-filled"
-			on:click={() => {
-				choosePackage(cocktailPackage);
-			}}
-		>
-			{cocktailPackage.label}
-		</button>
-	{/each}
+<div class="grid lg:grid-cols-2 gap-4 mb-4">
+	<div class="flex text-center lg:text-right">
+		<p class="grow mr-4">
+			I tvivl om hvad du skal vælge? Prøv en af vores færdiglavede skabeloner.<br />
+			<span class="font-bold">Mængderne er justeret til dine {guests} gæster.</span>
+		</p>
+		<iconify-icon
+			class="self-end hidden lg:visible"
+			icon="heroicons:arrow-trending-up"
+			height="40"
+		/>
+	</div>
+
+	<div class="flex w-full gap-4 items-center">
+		{#each cocktailPackages as cocktailPackage}
+			<button
+				class="btn variant-filled w-full"
+				on:click={() => {
+					choosePackage(cocktailPackage);
+				}}
+			>
+				{cocktailPackage.label}
+			</button>
+		{/each}
+	</div>
 </div>

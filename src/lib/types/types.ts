@@ -7,14 +7,22 @@ export type PricingPackage = {
 
 export type Ingredient = {
 	label: string;
-	alcPercentage?: string;
-	amount?: string;
+	alcPercentage?: number;
+	amountPerLiter?: number;
+	amountPercentage?: number;
+};
+
+export type ShoppingListItem = {
+	ingredient: Ingredient;
+	liters?: number;
+	pieces?: number;
 };
 
 export type CocktailDetails = {
 	label: string;
 	image?: string;
-	alcPercentage?: string;
+	alcPercentage?: number;
+	color?: string;
 	icon?: string;
 	pricePerLiter: number;
 	ingredients: Ingredient[];
@@ -25,9 +33,14 @@ export type CocktailOrder = {
 	liters: number;
 };
 
+export type CocktailPackageItem = {
+	cocktail: CocktailDetails;
+	litersPerGuest: number;
+};
+
 export type CocktailPackage = {
 	label?: string;
-	cocktailOrders: CocktailOrder[];
+	items: CocktailPackageItem[];
 	price?: string;
 };
 

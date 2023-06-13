@@ -6,12 +6,12 @@ export const ice: Ingredient = {
 
 export const gin: Ingredient = {
 	label: 'Gin',
-	alcPercentage: '40%'
+	alcPercentage: 40
 };
 
 export const vodka: Ingredient = {
 	label: 'Vodka',
-	alcPercentage: '40%'
+	alcPercentage: 40
 };
 
 export const jamaicaGingerBeer: Ingredient = {

@@ -1,11 +1,17 @@
 <script>
 	import PricingTable from '$lib/components/PricingTable.svelte';
 	import RangeSlider from 'svelte-range-slider-pips';
+	import { guestsStore, hoursStore } from '$lib/stores/booking';
 
-	let guests = 30;
-	let hours = 4;
 	let selectedPackage;
 	let recommendedPackage;
+	let guests;
+	let hours;
+
+	$: {
+		guestsStore.update((n) => guests);
+		hoursStore.update((n) => hours);
+	}
 
 	$: {
 		if (guests > 30 && hours > 2) {

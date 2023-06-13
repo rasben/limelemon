@@ -10,14 +10,14 @@ import {
 export const exclusive: CocktailPackage = {
 	label: 'Den eksklusive',
 	price: '95 kr pp. / time, eksl. moms',
-	cocktailOrders: [
+	items: [
 		{
 			cocktail: missVanillaRhubarbara,
-			liters: 2
+			litersPerGuest: 2
 		},
 		{
 			cocktail: moscowMule,
-			liters: 10
+			litersPerGuest: 1
 		}
 	]
 };
@@ -25,14 +25,14 @@ export const exclusive: CocktailPackage = {
 export const premium: CocktailPackage = {
 	label: 'Den specielle',
 	price: '85 kr pp. / time, eksl. moms',
-	cocktailOrders: [
+	items: [
 		{
 			cocktail: ginTonic,
-			liters: 20
+			litersPerGuest: 2
 		},
 		{
 			cocktail: moscowMule,
-			liters: 10
+			litersPerGuest: 2
 		}
 	]
 };
@@ -40,14 +40,14 @@ export const premium: CocktailPackage = {
 export const virgin: CocktailPackage = {
 	label: 'Den appelsinfrie',
 	price: '25 kr pp. / time, eksl. moms',
-	cocktailOrders: [
+	items: [
 		{
 			cocktail: lemonade,
-			liters: 30
+			litersPerGuest: 3
 		},
 		{
 			cocktail: rhubarbLemonade,
-			liters: 30
+			litersPerGuest: 3
 		}
 	]
 };
