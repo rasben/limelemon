@@ -7,7 +7,7 @@
 	import '../app.postcss';
 </script>
 
-<div class="container mx-auto flex flex-col justify-center px-10 py-[100px]">
+<div class="container mx-auto flex flex-col justify-center px-4 py-[150px]">
 	<a href="/" class="font-bold mb-2 absolute top-10" data-sveltekit-reload>Hjem</a>
 	<slot />
 </div>

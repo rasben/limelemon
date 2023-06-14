@@ -21,7 +21,7 @@
 </script>
 
 <div
-	class="card aspect-square flex flex-col text-center variant-filled-surface p-4 min-h-[200px] relative items-center justify-center overflow-hidden"
+	class="card aspect-square flex flex-col text-center variant-filled-surface p-4 relative items-center justify-center overflow-hidden"
 >
 	<WaveBackground bind:cocktailOrder />
 

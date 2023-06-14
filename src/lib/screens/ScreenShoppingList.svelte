@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { cocktailOrdersStore } from '$lib/stores/booking';
-
 	import ShoppingList from '$lib/components/ShoppingList.svelte';
+	import { bookingStore } from '$lib/store';
 
-	export let cocktailOrders;
+	export let booking = {};
 
-	cocktailOrdersStore.subscribe((value) => {
-		cocktailOrders = value;
+	bookingStore.subscribe((bookingStore) => {
+		booking = bookingStore;
 	});
 </script>
 
-<ShoppingList {cocktailOrders} />
+<h1 class="h1">{booking?.pricingPackage?.label}</h1>
+<ShoppingList cocktailOrders={booking?.cocktailOrders} />

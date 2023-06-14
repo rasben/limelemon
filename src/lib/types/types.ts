@@ -1,7 +1,8 @@
 export type PricingPackage = {
 	label: string;
-	description: string | null;
-	priceGuideline: string | null;
+	description?: string;
+	price?: string;
+	priceDescription?: string;
 	features: string[];
 };
 
@@ -51,6 +52,7 @@ export type Booking = {
 	date?: string;
 	theme?: string;
 	notes?: string;
-	glassSizeMl?: number;
-	cocktails?: CocktailOrder[];
+	totalPrice?: number;
+	cocktailOrders: CocktailOrder[];
+	pricingPackage?: PricingPackage;
 };
