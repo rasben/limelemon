@@ -13,11 +13,11 @@ export const exclusive: CocktailPackage = {
 	items: [
 		{
 			cocktail: missVanillaRhubarbara,
-			litersPerGuest: 2
+			litersPerGuest: 1
 		},
 		{
 			cocktail: moscowMule,
-			litersPerGuest: 1
+			litersPerGuest: 0.5
 		}
 	]
 };
@@ -28,11 +28,11 @@ export const premium: CocktailPackage = {
 	items: [
 		{
 			cocktail: ginTonic,
-			litersPerGuest: 2
+			litersPerGuest: 0.5
 		},
 		{
 			cocktail: moscowMule,
-			litersPerGuest: 2
+			litersPerGuest: 1
 		}
 	]
 };
@@ -43,11 +43,11 @@ export const virgin: CocktailPackage = {
 	items: [
 		{
 			cocktail: lemonade,
-			litersPerGuest: 3
+			litersPerGuest: 1
 		},
 		{
 			cocktail: rhubarbLemonade,
-			litersPerGuest: 3
+			litersPerGuest: 0.75
 		}
 	]
 };

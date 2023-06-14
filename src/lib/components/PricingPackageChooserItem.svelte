@@ -4,12 +4,12 @@
 
 	import CheckList from '$lib/components/CheckList.svelte';
 
-	export let id;
 	export let pricingPackage;
-	export let selectedPackage;
 	export let index;
-	export let isSelected;
+	export let selectedPackage;
 	export let isRecommended;
+
+	$: isSelected = pricingPackage === selectedPackage;
 
 	const itemClasses = `md:w-1/3 w-full min-w-[300px] mb-4 md:mb-0 hover:z-30`;
 	const inactiveItemClasses = '';
@@ -24,12 +24,12 @@
 		1: 'relative z-10',
 		2: `md:absolute md:pl-4 lg:relative right-0`
 	};
-
-	$: isSelected = selectedPackage === id;
 </script>
 
-<a
-	href="/pakke/{id}"
+<button
+	on:click={() => {
+		selectedPackage = pricingPackage;
+	}}
 	class="{itemClasses} {itemLoopClasses[index]}
    {isSelected ? activeItemClasses : inactiveItemClasses}"
 >
@@ -39,12 +39,15 @@
 				Vores anbefaling til din fest
 			</span>
 		{/if}
-		<h2 class="h3 mb-4">
+		<h2 class="h2 mb-4">
 			{pricingPackage?.label}
 		</h2>
-		<p class="relative mb-4">
-			{pricingPackage?.description}
-		</p>
+
+		{#if pricingPackage?.description}
+			<p class="relative mb-4">
+				{pricingPackage?.description}
+			</p>
+		{/if}
 
 		{#if pricingPackage?.features.length}
 			<CheckList items={pricingPackage.features} />
@@ -57,6 +60,8 @@
 			</p>
 		{/if}
 
-		<span class="btn variant-filled-primary mt-2"> Vælg cocktails med denne pakke </span>
+		{#if isSelected}
+			<a class="btn variant-filled-primary mt-2" href="/pakke"> Vælg cocktails med denne pakke </a>
+		{/if}
 	</div>
-</a>
+</button>

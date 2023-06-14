@@ -18,7 +18,8 @@
 				(i) => i.cocktail === cocktailPackageItem.cocktail
 			);
 
-			const liters = cocktailPackageItem.litersPerGuest * guests;
+			let liters = cocktailPackageItem.litersPerGuest * guests;
+			liters = Math.ceil(liters);
 
 			if (existingCocktailOrder) {
 				existingCocktailOrder.liters = liters;
@@ -34,7 +35,6 @@
 		});
 
 		cocktailOrders = cocktailOrders;
-		//cocktailOrders = cocktailPackage.cocktailOrders;
 	}
 </script>
 
@@ -51,7 +51,7 @@
 		/>
 	</div>
 
-	<div class="flex w-full gap-4 items-center">
+	<div class="flex flex-col md:flex-row w-full gap-4 items-center p-1 p-2">
 		{#each cocktailPackages as cocktailPackage}
 			<button
 				class="btn variant-filled w-full"
