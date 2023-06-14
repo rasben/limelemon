@@ -39,15 +39,15 @@
 </script>
 
 <div class="grid lg:grid-cols-2 gap-4 mb-4">
-	<div class="flex text-center lg:text-right">
+	<div class="flex text-center items-center lg:text-right">
 		<p class="grow mr-4">
 			I tvivl om hvad du skal vælge? Prøv en af vores færdiglavede skabeloner.<br />
 			<span class="font-bold">Mængderne er justeret til dine {guests} gæster.</span>
 		</p>
 		<iconify-icon
-			class="self-end hidden lg:visible"
+			class="hidden lg:block rotate-12"
 			icon="heroicons:arrow-trending-up"
-			height="40"
+			height="50"
 		/>
 	</div>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import 'iconify-icon';
 
+	import { goto } from '$app/navigation';
 	import type { Booking } from '$lib/types/types';
 	import { availableCocktails as cocktails } from '$lib/vars/cocktails';
 	import CocktailChooser from '$lib/components/CocktailChooser.svelte';
@@ -21,9 +22,13 @@
 		});
 	});
 
-	bookingStore.subscribe((bookingStore: Booking) => {
-		booking = bookingStore;
+	bookingStore.subscribe((bookingValue: Booking) => {
+		booking = bookingValue;
 	});
+
+	if (!booking?.guests || !booking?.pricingPackage) {
+		goto('/');
+	}
 
 	$: {
 		totalPrice = 0;

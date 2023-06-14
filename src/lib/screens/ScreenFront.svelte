@@ -9,10 +9,14 @@
 		booking = bookingStore;
 	});
 
-	let guests = 30;
-	let hours = 4;
+	let guests = 4;
+	let hours = 30;
+	let hoursSliderValue = [guests];
+	let guestsSliderValue = [hours];
 
 	$: {
+		hours = hoursSliderValue[0];
+		guests = guestsSliderValue[0];
 		booking.guests = guests;
 		booking.hours = hours;
 		booking.pricingPackage = selectedPackage;
@@ -33,17 +37,25 @@
 	<div class="mb-4 mx-auto">
 		<span class="label">
 			Jeg har
-			<span class="font-bold">{booking.guests} gæster</span>
+			<span class="font-bold">{guests} gæster</span>
 		</span>
-		<RangeSlider min={5} max={100} step={5} bind:values={guests} pips first="label" last="label" />
+		<RangeSlider
+			min={5}
+			max={100}
+			step={5}
+			bind:values={guestsSliderValue}
+			pips
+			first="label"
+			last="label"
+		/>
 	</div>
 
 	<div class="mb-4 mx-auto">
 		<span class="label">
 			Festen varer
-			<span class="font-bold">{booking.hours} timer</span>
+			<span class="font-bold">{hours} timer</span>
 		</span>
-		<RangeSlider min={2} max={7} step={1} bind:values={hours} pips all="label" />
+		<RangeSlider min={2} max={7} step={1} bind:values={hoursSliderValue} pips all="label" />
 	</div>
 </div>
 
